@@ -1,3 +1,5 @@
+-- pw_super has to be greater than 0 to be super in ringslinger. [Jisk:4-21-2026]
+
 local function countEmeraldFlag(emflag)
 	local c = 0
 
@@ -84,6 +86,24 @@ addHook("ShouldDamage", function(target, inflictor, source, damage, damagetype)
 
 	return false
 end, MT_PLAYER)
+
+addHook("PlayerThink", function(player)
+	if not G_RingSlingerGametype() then
+		return
+	end
+	
+	local mo = player.mo
+	
+	if not (mo and mo.valid) then
+		return
+	end
+	
+	if player.powers[pw_super] then
+		player.charflags = $|SF_SUPER
+	else
+		player.charflags = $ & ~SF_SUPER
+	end
+end)
 
 COM_AddCommand("forcesuper", function(player)
 	if not (player.mo and player.mo.valid) then

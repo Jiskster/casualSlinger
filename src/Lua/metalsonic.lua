@@ -36,8 +36,6 @@ addHook("PlayerThink", function(player)
 		player.wasdashing = true
 		player.charflags = $ | SF_NOSKID
 	end
-
-	player.charflags = $|SF_SUPER
 end)
 
 addHook("MobjMoveCollide", function(movemobj, mobj)
