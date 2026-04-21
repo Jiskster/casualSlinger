@@ -1,5 +1,7 @@
 -- pw_super has to be greater than 0 to be super in ringslinger. [Jisk:4-21-2026]
 
+local STRONGSUPERDAMAGE = 30 -- If super has this amount of rings or more, incoming damage is increased.
+
 local function countEmeraldFlag(emflag)
 	local c = 0
 
@@ -71,7 +73,7 @@ addHook("ShouldDamage", function(target, inflictor, source, damage, damagetype)
 
 	local lossrings = 1
 
-	if player.rings >= 100 then
+	if player.rings >= STRONGSUPERDAMAGE then
 		lossrings = 5
 	end
 
