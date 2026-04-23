@@ -33,6 +33,10 @@ addHook("MobjMoveCollide", function(movemobj, mobj)
 	if not (mobj.player and mobj.player.valid) or not (player) then -- if victim isn't a player or if we arent a player, gtfo
 		return
 	end
+	
+	if (mobj.player.powers[pw_flashing]) then
+		return
+	end
 
 	if player.dashmode > 3*TICRATE then
 		mobj.attackedbydash = true
