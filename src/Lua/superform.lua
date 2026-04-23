@@ -84,6 +84,10 @@ addHook("ShouldDamage", function(target, inflictor, source, damage, damagetype)
 	if lossrings then
 		player.rings = max(0, $ - lossrings)
 		S_StartSound(target, sfx_s3kb9)
+		
+		-- Slow down when getting attacked
+		target.momx = ($*6)/10
+		target.momy = ($*6)/10
 	end
 
 	return false
