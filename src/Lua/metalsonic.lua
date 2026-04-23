@@ -34,7 +34,8 @@ addHook("MobjMoveCollide", function(movemobj, mobj)
 		return
 	end
 	
-	if (mobj.player.powers[pw_flashing]) then
+	if (mobj.player.powers[pw_flashing]) 
+	or (mobj.player.powers[pw_invulnerability]) then
 		return
 	end
 
