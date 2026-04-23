@@ -5,15 +5,6 @@ local function zCollide(mo1,mo2)
 	return true
 end
 
-addHook("PreThinkFrame", function()
-	for player in players.iterate do
-		local cmd = player.cmd
-		if player.wasdashing then
-			cmd.forwardmove = max(-25, $)
-		end
-	end
-end)
-
 addHook("PlayerThink", function(player)
 	if not G_RingSlingerGametype() then
 		return
@@ -21,20 +12,6 @@ addHook("PlayerThink", function(player)
 
 	if not (player.mo and player.mo.valid) then
 		return
-	end
-
-	if player.wasdashing and not player.dashmode then
-		player.charflags = $ & ~SF_NOSKID
-		player.wasdashing = false
-	end
-
-	if (player.dashmode > 3*TICRATE) then
-		--player.mo.momx = $ / 2
-		--player.mo.momy = $ / 2
-		player.powers[pw_noautobrake] = 2
-		player.skidtime = 0
-		player.wasdashing = true
-		player.charflags = $ | SF_NOSKID
 	end
 end)
 
